@@ -28,7 +28,11 @@ let persons =[
 app.get('/', (request, response) => {
     response.send('<h1>Phonebook Backend</h1>')
 })
-
+app.get('/info', (request, response) => {
+    const resp = '<p>Phonebook has info for ' + persons.length + ' people</p>'
+        + '\n' + new Date().toString();
+    response.send(resp);
+})
 app.get('/api/persons', (request, response) => {
     response.json(persons)
 })
