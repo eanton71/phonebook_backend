@@ -25,10 +25,7 @@ let persons =[
     }
 ]
 const generateId = () => {
-    /*const maxId = notes.length > 0
-        ? Math.max(...notes.map(n => n.id))
-        : 0
-    return maxId + 1*/
+
     return Math.floor(Math.random() * 10000)
 }
 
@@ -46,7 +43,12 @@ app.post('/api/persons', (request, response) => {
         number:  body.number,
         id: generateId(),
     }
-
+    const personExists = persons.find(person => person.name === body.name)
+    if (personExists) {
+        return response.status(400).json({
+            error: 'User ' + personExists.name + ' is in database '
+        })
+    }
     persons = persons.concat(person)
     response.json(person)
 })
