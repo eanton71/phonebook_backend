@@ -3,6 +3,6 @@ POST http://localhost:3001/api/persons/ HTTP/1.1
 content-type: application/json
 
 {
-    "name": "Elon Musk",
+    "name": "Elon Muserterk",
     "number": "12353642fgfgt364362664"
 }
