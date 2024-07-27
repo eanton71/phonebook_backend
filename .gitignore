@@ -9,8 +9,7 @@ lerna-debug.log*
 
 coleccion
 currency
-node_modules
-dist
+node_modules 
 dist-ssr
 *.local
 
