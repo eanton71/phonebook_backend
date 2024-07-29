@@ -74,6 +74,20 @@ app.delete('/api/persons/:id', (request, response, next) => {
         })
         .catch(error => next(error))
 })
+app.put('/api/persons/:id', (request, response, next) => {
+    const body = request.body
+
+    const person = {
+        name: body.name,
+        number: body.number,
+    }
+
+    Person.findByIdAndUpdate(request.params.id, person, { new: true })
+        .then(updatedPerson => {
+            response.json(updatedPerson)
+        })
+        .catch(error => next(error))
+})
 const unknownEndpoint = (request, response) => {
     response.status(404).send({ error: 'unknown endpoint' })
 }
@@ -87,7 +101,7 @@ app.use(unknownEndpoint)
  * @param {*} error 
  * @param {*} request 
  * @param {*} response 
- * @param {*} next 
+ * @param {*} next siguiente middleware
  * @returns 
  */
 const errorHandler = (error, request, response, next) => {
@@ -99,6 +113,8 @@ const errorHandler = (error, request, response, next) => {
 }
 // middleware de errores
 app.use(errorHandler)
+
+
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
