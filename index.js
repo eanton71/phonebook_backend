@@ -80,15 +80,24 @@ const unknownEndpoint = (request, response) => {
 
 // controlador de solicitudes con endpoint desconocido
 app.use(unknownEndpoint)
+
+
+/**
+ * manejador  errores
+ * @param {*} error 
+ * @param {*} request 
+ * @param {*} response 
+ * @param {*} next 
+ * @returns 
+ */
 const errorHandler = (error, request, response, next) => {
     console.error(error.message)
-
     if (error.name === 'CastError') {
         return response.status(400).send({ error: 'malformatted id' })
     }
-
     next(error)
 }
+// middleware de errores
 app.use(errorHandler)
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
