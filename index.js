@@ -1,17 +1,20 @@
-const express = require('express')
-const app = express()
-app.use(express.json())
-const cors = require('cors')
+require('dotenv').config()
 
+const express = require('express')
+var morgan = require('morgan')
+const cors = require('cors')
+const Person = require('./models/person')
+const app = express()
+
+app.use(express.json())
 app.use(cors())
 app.use(express.static('dist'))
 //morgan configuration
-var morgan = require('morgan')
 app.use(morgan(':method :url :body'))
 morgan.token('body', request => JSON.stringify(request.body))
 //morgan configuration end
 
-
+/*
 let persons =[
     {
         "id": 1,
@@ -34,7 +37,7 @@ let persons =[
         "number": "39-23-6423122"
     }
 ]
-
+*/
 //
 const generateId = () => {
     return Math.floor(Math.random() * 10000)
@@ -43,25 +46,18 @@ const generateId = () => {
 app.post('/api/persons', (request, response) => {
     const body = request.body
 
-    if (!body.name ||!body.number) {
-        return response.status(400).json({
-            error: 'content missing'
-        })
+    if (body.content === undefined) {
+        return response.status(400).json({ error: 'content missing' })
     }
 
-    const person = {
+    const person = new Person({
         name: body.name,
-        number:  body.number,
-        id: generateId(),
-    }
-    const personExists = persons.find(person => person.name === body.name)
-    if (personExists) {
-        return response.status(400).json({
-            error: 'User ' + personExists.name + ' is in database '
-        })
-    }
-    persons = persons.concat(person)
-    response.json(person)
+        number: body.number,
+    })
+
+    person.save().then(savedPerson => {
+        response.json(savedPerson)
+    })
 })
 app.get('/', (request, response) => {
     response.send('<h1>Phonebook Backend</h1>')
@@ -72,19 +68,14 @@ app.get('/info', (request, response) => {
     response.send(resp);
 })
 app.get('/api/persons', (request, response) => {
-    response.json(persons)
+    Person.find({}).then(persons => {
+        response.json(persons)
+    })
 })
 app.get('/api/persons/:id', (request, response) => {
-    const id = Number(request.params.id)
-    console.log(id)
-    const person = persons.find(person => person.id === id)
-
-
-    if (person) {
+    Person.findById(request.params.id).then(person => {
         response.json(person)
-    } else {
-        response.status(404).end()
-    }
+    })
 });
 app.delete('/api/persons/:id', (request, response) => {
     const id = Number(request.params.id)
