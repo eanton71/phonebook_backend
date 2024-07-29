@@ -64,6 +64,9 @@ app.get('/api/persons/:id', (request, response, next) => {
 
         .catch(error => next(error))
 });
+/**
+ * Controlador peticion delete person
+ */
 app.delete('/api/persons/:id', (request, response, next) => {
     Person.findByIdAndDelete(request.params.id)
         .then(result => {
