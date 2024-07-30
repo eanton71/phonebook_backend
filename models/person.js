@@ -15,8 +15,16 @@ mongoose.connect(url)
         console.log('error connecting to MongoDB:', error.message)
     })
 
+
+/**
+ * nombre requerido y al menos de 3 caracteres de longitud
+ */    
 const personSchema = new mongoose.Schema({
-    name: String,
+    name: {
+        type: String,
+        minLength: 3,
+        required: true
+    },          
     number: String,
 })
 
