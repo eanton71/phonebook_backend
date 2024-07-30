@@ -8,7 +8,7 @@
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:ui": "rm -rf dist && cd ../../_fullstackopen/part2/phonebook && npm run build && cp -r dist ../../../_fullstackopen_backend/phonebook_backend",
-    "deploy:full": "npm run build:ui && git add . && git commit -m 3.20_phonebook_backend_validation_put_number && git push"
+    "deploy:full": "npm run build:ui && git add . && git commit -m 3.21_phonebook_backend_produccion && git push"
   },
   "repository": {
     "type": "git",
