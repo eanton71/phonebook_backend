@@ -1,0 +1,23 @@
+PUT http://localhost:3001/api/persons/66a623c45ba3f79fce2c62fd HTTP/1.1
+content-type: application/json
+
+{
+    "name": "no estoy",
+    "number": "2354321523"
+}
+###
+PUT http://localhost:3001/api/persons/66a623c2 3f79fce2c62fd HTTP/1.1
+content-type: application/json
+
+{
+    "name": "mal puestos",
+    "number": "552135345"
+}
+###
+PUT http://localhost:3001/api/persons/66a7b7a607716d0009d3c249 HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Arto Hellas",
+    "number": "040-123459"
+}
