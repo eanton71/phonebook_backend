@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:ui": "rm -rf dist && cd ../../_fullstackopen/part2/phonebook && npm run build && cp -r dist ../../../_fullstackopen_backend/phonebook_backend",
-    "deploy:full": "npm run build:ui && git add . && git commit -m 3.lint && git push"
+    "deploy:full": "npm run build:ui && git add . && git commit -m 3.22_phonebook_backend_lint && git push"
   },
   "repository": {
     "type": "git",
