@@ -43,3 +43,16 @@ export default defineConfig({
 ````
 - Direccion en REnder:
 - https://phonebook-backend-iq3n.onrender.com/
+
+
+#### Lint
+  41:32   error  Expected linebreaks to be 'LF' but found 'CRLF'  @stylistic/js/linebreak-style       
+
+  En windows para solvventarlo 
+  usar dos2unix en terminal bash para convertir archivos 
+HP@DESKTOP-53HFHMR MINGW64 ~/Documents/_fullstackopen_backend/phonebook_backend (main)
+$ dos2unix models/person.js 
+dos2unix: converting file models/person.js to Unix format...
+
+En configuracion VSCode
+Files: Eol ponerlo en \n

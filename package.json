@@ -6,9 +6,10 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
+    "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:ui": "rm -rf dist && cd ../../_fullstackopen/part2/phonebook && npm run build && cp -r dist ../../../_fullstackopen_backend/phonebook_backend",
-    "deploy:full": "npm run build:ui && git add . && git commit -m 3.21_phonebook_backend_produccion && git push"
+    "deploy:full": "npm run build:ui && git add . && git commit -m 3.lint && git push"
   },
   "repository": {
     "type": "git",
@@ -33,6 +34,10 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.8.0",
+    "@stylistic/eslint-plugin-js": "^2.4.0",
+    "eslint": "^9.8.0",
+    "globals": "^15.8.0",
     "nodemon": "^3.1.4"
   }
 }
